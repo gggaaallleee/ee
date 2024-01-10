@@ -37,10 +37,30 @@ public class AdminMenuService {
         List<Integer> rids = adminUserRoleService.listAllByUid(user.getId())
                 .stream().map(AdminUserRole::getRid).collect(Collectors.toList());
 
+
+        /*// 1. 通过角色ID集合获取所有的AdminRoleMenu对象
+            List<AdminRoleMenu> roleMenus = adminRoleMenuService.findAllByRid(rids);
+
+            // 2. 从AdminRoleMenu对象中提取菜单ID
+            List<Integer> menuIds = new ArrayList<>();
+            for (AdminRoleMenu roleMenu : roleMenus) {
+                menuIds.add(roleMenu.getMid());
+            }
+
+            // 3. 通过菜单ID列表获取所有的AdminMenu对象
+            List<AdminMenu> menus = adminMenuDAO.findAllById(menuIds);
+
+            // 4. 去除重复的AdminMenu对象
+            Set<AdminMenu> uniqueMenus = new HashSet<>(menus);
+
+            // 5. 将Set转换回List
+            List<AdminMenu> finalMenus = new ArrayList<>(uniqueMenus);
+            */
         //获取这些角色的菜单项。
         List<Integer> menuIds = adminRoleMenuService.findAllByRid(rids)
                 .stream().map(AdminRoleMenu::getMid).collect(Collectors.toList());
         List<AdminMenu> menus = adminMenuDAO.findAllById(menuIds).stream().distinct().collect(Collectors.toList());
+
 
         //调整菜单的结构。
         handleMenus(menus);
@@ -92,12 +112,13 @@ public class AdminMenuService {
         menus.clear();
         menus.addAll(menus2);
 
+        // 为每个父菜单设置子菜单列表
         menus.forEach(m -> {
             List<AdminMenu> children = getAllByParentId(m.getId());
             children.removeIf(c -> !menus.contains(c));
             m.setChildren(children);
         });
-
+        // 移除menus列表中所有ParentId不为0的菜单
         menus.removeIf(m -> m.getParentId() != 0);
     }
 }

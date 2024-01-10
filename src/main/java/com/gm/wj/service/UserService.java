@@ -70,19 +70,22 @@ public class UserService {
         user.setEnabled(true);
 
         if (username.equals("") || password.equals("")) {
-            return 0;
+            return 0;//0表示用户名和密码不能为空
         }
 
         boolean exist = isExist(username);
 
         if (exist) {
-            return 2;
+            return 2; //2表示用户已存在
         }
 
-        // 默认生成 16 位盐
+        // 默认生成 16 位盐，先生成了随机的 byte 数组，又转换成了字符串类型的 base64 编码并返回
         String salt = new SecureRandomNumberGenerator().nextBytes().toString();
+        // 设置 hash 算法迭代次数
         int times = 2;
+        // 得到 hash 后的密码
         String encodedPassword = new SimpleHash("md5", password, salt, times).toString();
+
 
         user.setSalt(salt);
         user.setPassword(encodedPassword);

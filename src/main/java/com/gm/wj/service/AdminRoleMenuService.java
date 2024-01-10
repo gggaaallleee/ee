@@ -44,7 +44,6 @@ public class AdminRoleMenuService {
             rm.setRid(rid);
             rms.add(rm);
         }
-
         adminRoleMenuDAO.saveAll(rms);
     }
 }

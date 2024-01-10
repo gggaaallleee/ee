@@ -59,11 +59,13 @@ public class LibraryController {
         File imageFolder = new File(folder);
         File f = new File(imageFolder, StringUtils.getRandomString(6) + file.getOriginalFilename()
                 .substring(file.getOriginalFilename().length() - 4));
+        //文件名是一个随机生成的6位字符串加上原始文件的扩展名
         if (!f.getParentFile().exists())
             f.getParentFile().mkdirs();
         try {
             file.transferTo(f);
             String imgURL = "http://localhost:8443/api/file/" + f.getName();
+            //创建一个URL，这个URL指向刚刚保存的文件。
             return imgURL;
         } catch (IOException e) {
             e.printStackTrace();

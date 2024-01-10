@@ -21,7 +21,7 @@ public class LoginController {
 
     @Autowired
     UserService userService;
-
+    //@CrossOrigin 跨域，前后端分离，前端端口为8080，后端端口为8443，所以需要跨域
     @PostMapping("/api/login")
     public Result login(@RequestBody User requestUser) {
         String username = requestUser.getUsername();
@@ -37,6 +37,8 @@ public class LoginController {
             if (!user.isEnabled()) {
                 return ResultFactory.buildFailResult("该用户已被禁用");
             }
+            //session.setAttribute("user", user);
+            //不使用session，使用shiro的subject
             return ResultFactory.buildSuccessResult(username);
         } catch (IncorrectCredentialsException e) {
             return ResultFactory.buildFailResult("密码错误");
@@ -66,7 +68,7 @@ public class LoginController {
         return ResultFactory.buildSuccessResult("成功登出");
     }
 
-    @GetMapping("/api/authentication")
+    @GetMapping("/api/authentication")//访问每个页面前都向后端发送一个请求，目的是经由拦截器验证服务器端的登录状态
     public String authentication() {
         return "身份认证成功";
     }

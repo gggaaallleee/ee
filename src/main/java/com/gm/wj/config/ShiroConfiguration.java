@@ -18,15 +18,15 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-
+//shiro配置类
 @Configuration
 public class ShiroConfiguration {
-    @Bean
+    @Bean//Shiro Bean的生命周期
     public static LifecycleBeanPostProcessor getLifecycleBeanProcessor() {
         return new LifecycleBeanPostProcessor();
     }
 
-    @Bean
+    @Bean//Shiro的Web过滤器Factory 命名:shiroFilter
     public ShiroFilterFactoryBean shiroFilter(SecurityManager securityManager) {
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
         shiroFilterFactoryBean.setSecurityManager(securityManager);
@@ -37,7 +37,7 @@ public class ShiroConfiguration {
 
         customizedFilter.put("url", getURLPathMatchingFilter()); // 自定义过滤器设置 2，命名，需在设置过滤路径前
 
-        filterChainDefinitionMap.put("/api/authentication", "authc"); // 防鸡贼登录
+        filterChainDefinitionMap.put("/api/authentication", "authc"); //防御
         filterChainDefinitionMap.put("/api/menu", "authc");
         filterChainDefinitionMap.put("/api/admin/**", "authc");
 
@@ -50,9 +50,9 @@ public class ShiroConfiguration {
 
     public URLPathMatchingFilter getURLPathMatchingFilter() {
         return new URLPathMatchingFilter();
-    }
+    }// 自定义过滤器设置 5，实例化，但是不能用@Bean，否则会被 ShiroFilterFactoryBean 管理，导致项目启动失败
 
-    @Bean
+    @Bean //安全管理器，设置了realm和rememberMeManager
     public SecurityManager securityManager() {
         DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
         securityManager.setRealm(getWJRealm());
@@ -60,6 +60,7 @@ public class ShiroConfiguration {
         return securityManager;
     }
 
+    //rememberMeManager设置，设置了cookie和加密方式
     public CookieRememberMeManager rememberMeManager() {
         CookieRememberMeManager cookieRememberMeManager = new CookieRememberMeManager();
         cookieRememberMeManager.setCookie(rememberMeCookie());
@@ -67,6 +68,7 @@ public class ShiroConfiguration {
         return cookieRememberMeManager;
     }
 
+    //rememberMeCookie设置，设置了cookie名和过期时间
     @Bean
     public SimpleCookie rememberMeCookie() {
         SimpleCookie simpleCookie = new SimpleCookie("rememberMe");
@@ -74,6 +76,7 @@ public class ShiroConfiguration {
         return simpleCookie;
     }
 
+    //realm设置，设置了加密方式
     @Bean
     public WJRealm getWJRealm() {
         WJRealm wjRealm = new WJRealm();
@@ -81,6 +84,7 @@ public class ShiroConfiguration {
         return wjRealm;
     }
 
+    //加密方式设置，设置了加密算法和加密次数
     @Bean
     public HashedCredentialsMatcher hashedCredentialsMatcher() {
         HashedCredentialsMatcher hashedCredentialsMatcher = new HashedCredentialsMatcher();
@@ -89,6 +93,7 @@ public class ShiroConfiguration {
         return hashedCredentialsMatcher;
     }
 
+    //开启shiro aop注解支持，使用代理方式，所以需要开启代码支持
     @Bean
     public AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor(SecurityManager securityManager) {
         AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor = new AuthorizationAttributeSourceAdvisor();

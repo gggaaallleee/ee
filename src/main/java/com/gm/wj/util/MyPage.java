@@ -7,7 +7,7 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
-
+//Spring Data JPA 的 Page 对象无法被反序列化，因为它的实现类 PageImpl 没有空参构造器
 public class MyPage<T> implements Iterable<T>, Serializable {
     private static final long serialVersionUID = -3720998571176536865L;
     private List<T> content = new ArrayList<>();

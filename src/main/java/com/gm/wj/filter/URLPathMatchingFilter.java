@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Set;
 
-
+//shiro的过滤器，用于拦截请求，判断是否有权限访问
 @Log4j2
 public class URLPathMatchingFilter extends PathMatchingFilter {
     @Autowired
@@ -27,11 +27,12 @@ public class URLPathMatchingFilter extends PathMatchingFilter {
         HttpServletRequest httpServletRequest = (HttpServletRequest) request;
         HttpServletResponse httpServletResponse = (HttpServletResponse) response;
 
+        // 放行 options 请求，否则无法让前端带上自定义的 header 信息，导致 sessionID 改变，shiro 验证失败,超级大坑
         if (HttpMethod.OPTIONS.toString().equals((httpServletRequest).getMethod())) {
             httpServletResponse.setStatus(HttpStatus.NO_CONTENT.value());
             return true;
         }
-
+        //在 Shiro 的配置文件中，我们不能把 URLPathMatchingFilter 用 @Bean 被 Spring 管理起来。 原因是 Shiro 存在 bug, 这个也是过滤器，ShiroFilterFactoryBean 也是过滤器，Shiro 会把两个过滤器都交给 Spring 管理，导致项目启动失败。
         if (null == adminPermissionService) {
             adminPermissionService = SpringContextUtils.getContext().getBean(AdminPermissionService.class);
         }
@@ -39,7 +40,7 @@ public class URLPathMatchingFilter extends PathMatchingFilter {
         String requestAPI = getPathWithinApplication(request);
 
         Subject subject = SecurityUtils.getSubject();
-
+        // 使用 shiro 验证
         if (!subject.isAuthenticated()) {
             log.info("未登录用户尝试访问需要登录的接口");
             return false;

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 
-@RestController
+@RestController // @RestController = @Controller + @ResponseBody，返回的都是json格式的数据，restful风格
 public class UserController {
     @Autowired
     UserService userService;

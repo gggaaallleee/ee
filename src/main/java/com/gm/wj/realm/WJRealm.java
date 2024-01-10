@@ -15,7 +15,7 @@ import org.springframework.util.ObjectUtils;
 
 import java.util.Set;
 
-
+//shiro中的realm，用于认证和授权
 public class WJRealm extends AuthorizingRealm {
 
     @Autowired
@@ -41,6 +41,7 @@ public class WJRealm extends AuthorizingRealm {
     // 获取认证信息，即根据 token 中的用户名从数据库中获取密码、盐等并返回
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
+        //getPrincipal()方法返回的是一个对象，这个对象可以是username，也可以是用户实体类对象
         String userName = token.getPrincipal().toString();
         User user = userService.findByUsername(userName);
         if (ObjectUtils.isEmpty(user)) {
@@ -49,6 +50,7 @@ public class WJRealm extends AuthorizingRealm {
         String passwordInDB = user.getPassword();
         String salt = user.getSalt();
         SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(userName, passwordInDB, ByteSource.Util.bytes(salt), getName());
+        //SimpleAuthenticationInfo代表了用户的角色信息集合，第一个参数是用户名，第二个参数是从数据库中查询出来的密码，第三个参数是盐，第四个参数是当前realm的名字
         return authenticationInfo;
     }
 }

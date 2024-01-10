@@ -12,6 +12,7 @@ import java.beans.PropertyDescriptor;
 import java.util.*;
 import java.util.stream.Collectors;
 
+//只复制非null的属性等处理，辅助于类型转换，服务于DTO
 public class BeanUtils {
 
     private BeanUtils() {

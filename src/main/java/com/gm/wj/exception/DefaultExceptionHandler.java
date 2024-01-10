@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 
 @ControllerAdvice
-@ResponseBody
+@ResponseBody//处理未授权异常
 public class DefaultExceptionHandler {
     @ExceptionHandler(value = Exception.class)
     public Result exceptionHandler(Exception e) {

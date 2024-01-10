@@ -16,6 +16,7 @@ import java.util.Map;
 
 
 @RestController
+//RBAC思路，角色管理
 public class RoleController {
     @Autowired
     AdminRoleService adminRoleService;

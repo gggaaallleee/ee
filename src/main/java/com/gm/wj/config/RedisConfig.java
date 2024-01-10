@@ -22,6 +22,7 @@ import java.time.Duration;
 
 @EnableCaching
 @Configuration
+//Java 中的对象存储进 Redis 之前需要进行序列化，默认为字节数组。为方便解析，可以将其配置为 JSON 格式
 public class RedisConfig extends CachingConfigurerSupport {
     public static final String REDIS_KEY_DATABASE="wj";
 
