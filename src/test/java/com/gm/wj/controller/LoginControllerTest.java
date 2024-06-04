@@ -1,4 +1,4 @@
-package wj.controller;
+package com.gm.wj.controller;
 
 import com.gm.wj.entity.User;
 import com.gm.wj.result.Result;

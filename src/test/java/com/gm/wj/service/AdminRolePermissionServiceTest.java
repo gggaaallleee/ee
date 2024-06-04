@@ -1,4 +1,4 @@
-package wj.service;
+package com.gm.wj.service;
 import com.gm.wj.dao.AdminRolePermissionDAO;
 import com.gm.wj.entity.AdminPermission;
 import com.gm.wj.service.AdminRolePermissionService;

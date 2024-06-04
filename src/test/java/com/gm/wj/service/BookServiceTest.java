@@ -1,4 +1,4 @@
-package wj.service;
+package com.gm.wj.service;
 
 import com.gm.wj.dao.BookDAO;
 import com.gm.wj.entity.Book;

@@ -1,4 +1,4 @@
-package wj.controller;
+package com.gm.wj.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gm.wj.entity.Book;
@@ -46,7 +46,6 @@ public class LibraryControllerTest {
     @Test
     public void testAddOrUpdateBooks() throws Exception {
         Book book = new Book();
-        book.setId(74);
         book.setCover("https://i.loli.net/2019/04/10/5cad63931ce27.jpg");
         book.setTitle("谋杀狄更斯");
         book.setAuthor("[美] 丹·西蒙斯");
@@ -64,11 +63,11 @@ public class LibraryControllerTest {
 
     @Test
     public void testDeleteBook() throws Exception {
-        // 创建一个新的书籍
+        // 创建一本新的书籍
         Book book = new Book();
         book.setTitle("testTitle");
         book.setAuthor("testAuthor");
-        MvcResult result = mockMvc.perform(MockMvcRequestBuilders.post("/api/admin/content/books")
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/admin/content/books")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(new ObjectMapper().writeValueAsString(book))
                         .session(session))
@@ -76,10 +75,16 @@ public class LibraryControllerTest {
                 .andExpect(jsonPath("$.message").value("成功"))
                 .andReturn();
 
-        // 从响应中获取新创建的书籍的id
+        // 使用/api/search接口查找这本书
+        MvcResult result = mockMvc.perform(MockMvcRequestBuilders.get("/api/search")
+                        .param("keywords", "testTitle")
+                        .session(session))
+                .andExpect(status().isOk())
+                .andReturn();
         String response = result.getResponse().getContentAsString();
-        int id = JsonPath.parse(response).read("$.data.id");
-
+        // 从搜索结果中获取书籍的id
+        int id = JsonPath.parse(response).read("$.result[0].id");
+        book.setId(id);
         mockMvc.perform(MockMvcRequestBuilders.post("/api/admin/content/books/delete")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(new ObjectMapper().writeValueAsString(book))

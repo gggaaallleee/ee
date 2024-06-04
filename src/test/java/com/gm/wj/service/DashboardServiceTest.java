@@ -1,4 +1,4 @@
-package wj.service;
+package com.gm.wj.service;
 
 import com.gm.wj.service.BookService;
 import com.gm.wj.service.DashboardService;
