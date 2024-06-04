@@ -14,17 +14,33 @@ jobs:
         distribution: 'adopt'
     - name: Build with Maven
       run: mvn install
-  test:
+  test JotterController:
     needs: build
     runs-on: ubuntu-latest
     steps:
       - name: test JotterController
         run: ./wj/controller/JotterControllerTest.java
+  test LibraryController:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
       - name: test LibraryController
-        run: ./wj/controller/LibraryControllerTest.java
+        run: src/test/java/wj/controller/JotterControllerTest.java
+  test LoginController:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
       - name: test LoginController
-        run: ./wj/controller/LoginControllerTest.java
+        run: src/test/java/wj/controller/LoginControllerTest.java
+  test RoleController:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
       - name: test RoleController
-        run: ./wj/controller/RoleControllerTest.java
+        run: src/test/java/wj/controller/RoleControllerTest.java
+  test UserController:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
       - name: test UserController
-        run: ./wj/controller/UserControllerTest.java
+        run: src/test/java/wj/controller/UserControllerTest.java
