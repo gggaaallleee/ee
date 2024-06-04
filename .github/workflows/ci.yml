@@ -20,33 +20,33 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: test JotterController
+        name: test JotterController
         run: mvn -Dtest=wj.controller.JotterControllerTest test
   test_LibraryController:
     needs: build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: test LibraryController
+        name: test LibraryController
         run: mvn -Dtest=wj.controller.LibraryControllerTest test
   test_LoginController:
     needs: build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: test LoginController
+        name: test LoginController
         run: mvn -Dtest=wj.controller.LoginControllerTest test
   test_RoleController:
     needs: build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: test RoleController
+        name: test RoleController
         run: mvn -Dtest=wj.controller.RoleControllerTest test
   test_UserController:
     needs: build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: test UserController
+        name: test UserController
         run: mvn -Dtest=wj.controller.UserControllerTest test
