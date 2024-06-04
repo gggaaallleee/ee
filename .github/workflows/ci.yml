@@ -19,28 +19,28 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: test JotterController
-        run: ./wj/controller/JotterControllerTest.java
+        run: mvn -Dtest=wj.controller.JotterControllerTest test
   test_LibraryController:
     needs: build
     runs-on: ubuntu-latest
     steps:
       - name: test LibraryController
-        run: src/test/java/wj/controller/JotterControllerTest.java
+        run: mvn -Dtest=wj.controller.LibraryControllerTest test
   test_LoginController:
     needs: build
     runs-on: ubuntu-latest
     steps:
       - name: test LoginController
-        run: src/test/java/wj/controller/LoginControllerTest.java
+        run: mvn -Dtest=wj.controller.LoginControllerTest test
   test_RoleController:
     needs: build
     runs-on: ubuntu-latest
     steps:
       - name: test RoleController
-        run: src/test/java/wj/controller/RoleControllerTest.java
+        run: mvn -Dtest=wj.controller.RoleControllerTest test
   test_UserController:
     needs: build
     runs-on: ubuntu-latest
     steps:
       - name: test UserController
-        run: src/test/java/wj/controller/UserControllerTest.java
+        run: mvn -Dtest=wj.controller.UserControllerTest test
