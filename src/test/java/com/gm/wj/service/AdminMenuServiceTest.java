@@ -7,6 +7,7 @@ import com.gm.wj.service.AdminUserRoleService;
 import com.gm.wj.service.UserService;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.util.ThreadContext;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
@@ -17,7 +18,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -48,7 +48,7 @@ public class AdminMenuServiceTest {
         adminMenu.setParentId(1);
         expected.add(adminMenu);
         List<AdminMenu> result = adminMenuService.getAllByParentId(parentId);
-        assertEquals(expected, result);
+        Assert.assertEquals(expected, result);
     }
 
     @Test
@@ -63,6 +63,6 @@ public class AdminMenuServiceTest {
         ThreadContext.bind(subject);
         List<AdminMenu> result = adminMenuService.getMenusByCurrentUser();
         System.out.println(result);
-        assertEquals(expected, result);
+        Assert.assertEquals(expected, result);
     }
 }

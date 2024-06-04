@@ -5,6 +5,7 @@ import com.gm.wj.entity.AdminRole;
 import com.gm.wj.service.AdminMenuService;
 import com.gm.wj.service.AdminPermissionService;
 import com.gm.wj.service.AdminRoleService;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +15,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.*;
 
 @RunWith(SpringRunner.class)
@@ -36,7 +35,7 @@ public class AdminRoleServiceTest {
     @Test
     public void testListWithPermsAndMenus() {
         List<AdminRole> result = adminRoleService.listWithPermsAndMenus();
-        assertNotNull(result);
+        Assert.assertNotNull(result);
     }
 
     @Test
@@ -61,6 +60,6 @@ public class AdminRoleServiceTest {
 
         AdminRole result = adminRoleService.updateRoleStatus(updatedRole);
 
-        assertEquals(false, result.isEnabled());
+        Assert.assertEquals(false, result.isEnabled());
     }
 }
