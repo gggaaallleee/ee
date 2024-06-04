@@ -1,5 +1,6 @@
-package com.gm.wj.service;
+package wj.service;
 import com.gm.wj.dao.AdminRoleMenuDAO;
+import com.gm.wj.service.AdminRoleMenuService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

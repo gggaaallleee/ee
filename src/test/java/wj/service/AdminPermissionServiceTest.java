@@ -1,6 +1,7 @@
-package com.gm.wj.service;
+package wj.service;
 
 import com.gm.wj.entity.AdminPermission;
+import com.gm.wj.service.AdminPermissionService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

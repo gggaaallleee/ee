@@ -1,10 +1,8 @@
-package com.gm.wj.controller;
+package wj.controller;
 
-import com.gm.wj.dao.UserDAO;
 import com.gm.wj.entity.User;
 import com.gm.wj.result.Result;
 import com.gm.wj.service.UserService;
-import org.apache.shiro.crypto.hash.SimpleHash;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

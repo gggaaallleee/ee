@@ -1,9 +1,7 @@
-package com.gm.wj.controller;
+package wj.controller;
 
-import com.gm.wj.entity.Book;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.gm.wj.entity.Category;
-import org.hsqldb.Session;
+import com.gm.wj.entity.Book;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,8 +14,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-
-import java.time.LocalDate;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;

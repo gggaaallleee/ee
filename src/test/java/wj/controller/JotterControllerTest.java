@@ -1,6 +1,7 @@
-package com.gm.wj.controller;
-import com.gm.wj.entity.JotterArticle;
+package wj.controller;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.gm.wj.entity.JotterArticle;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

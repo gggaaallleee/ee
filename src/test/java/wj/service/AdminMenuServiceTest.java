@@ -1,11 +1,10 @@
-package com.gm.wj.service;
+package wj.service;
 
-import com.gm.wj.dao.AdminMenuDAO;
-import com.gm.wj.dao.AdminRoleMenuDAO;
-import com.gm.wj.dao.AdminUserRoleDAO;
-import com.gm.wj.dao.UserDAO;
 import com.gm.wj.entity.AdminMenu;
-import org.apache.shiro.SecurityUtils;
+import com.gm.wj.service.AdminMenuService;
+import com.gm.wj.service.AdminRoleMenuService;
+import com.gm.wj.service.AdminUserRoleService;
+import com.gm.wj.service.UserService;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.util.ThreadContext;
 import org.junit.Test;
@@ -13,14 +12,13 @@ import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.apache.shiro.mgt.SecurityManager;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class AdminMenuServiceTest {

@@ -1,5 +1,9 @@
-package com.gm.wj.service;
+package wj.service;
 
+import com.gm.wj.service.BookService;
+import com.gm.wj.service.DashboardService;
+import com.gm.wj.service.JotterArticleService;
+import com.gm.wj.service.UserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +13,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Map;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
 
 @RunWith(SpringRunner.class)

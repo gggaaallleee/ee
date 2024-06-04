@@ -1,9 +1,9 @@
-package com.gm.wj.controller;
+package wj.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gm.wj.entity.AdminMenu;
 import com.gm.wj.entity.AdminPermission;
 import com.gm.wj.entity.AdminRole;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

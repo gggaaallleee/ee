@@ -1,7 +1,10 @@
-package com.gm.wj.service;
+package wj.service;
 
 import com.gm.wj.dao.AdminRoleDAO;
 import com.gm.wj.entity.AdminRole;
+import com.gm.wj.service.AdminMenuService;
+import com.gm.wj.service.AdminPermissionService;
+import com.gm.wj.service.AdminRoleService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
