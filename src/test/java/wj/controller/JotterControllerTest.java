@@ -2,6 +2,7 @@ package wj.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gm.wj.entity.JotterArticle;
+import com.jayway.jsonpath.JsonPath;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -60,7 +61,22 @@ public class JotterControllerTest {
 
     @Test
     public void testDeleteArticle() throws Exception {
-        int id = 20;
+        // 创建一个新的文章
+        JotterArticle article = new JotterArticle();
+        article.setArticleTitle("testTitle");
+        article.setArticleContentMd("testContent");
+        article.setArticleAbstract("111");
+        MvcResult result = mockMvc.perform(MockMvcRequestBuilders.post("/api/admin/content/article")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(new ObjectMapper().writeValueAsString(article))
+                        .session(session))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.message").value("成功"))
+                .andReturn();
+
+        // 从响应中获取新创建的文章的id
+        String response = result.getResponse().getContentAsString();
+        int id = JsonPath.parse(response).read("$.data.id");
 
         mockMvc.perform(MockMvcRequestBuilders.delete("/api/admin/content/article/" + id)
                         .session(session))

@@ -2,6 +2,7 @@ package wj.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gm.wj.entity.Book;
+import com.jayway.jsonpath.JsonPath;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -63,8 +64,21 @@ public class LibraryControllerTest {
 
     @Test
     public void testDeleteBook() throws Exception {
+        // 创建一个新的书籍
         Book book = new Book();
-        book.setId(74);
+        book.setTitle("testTitle");
+        book.setAuthor("testAuthor");
+        MvcResult result = mockMvc.perform(MockMvcRequestBuilders.post("/api/admin/content/books")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(new ObjectMapper().writeValueAsString(book))
+                        .session(session))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.message").value("成功"))
+                .andReturn();
+
+        // 从响应中获取新创建的书籍的id
+        String response = result.getResponse().getContentAsString();
+        int id = JsonPath.parse(response).read("$.data.id");
 
         mockMvc.perform(MockMvcRequestBuilders.post("/api/admin/content/books/delete")
                         .contentType(MediaType.APPLICATION_JSON)

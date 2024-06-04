@@ -2,7 +2,6 @@ package wj.controller;
 
 import com.gm.wj.entity.User;
 import com.gm.wj.result.Result;
-import com.gm.wj.service.UserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +20,6 @@ public class LoginControllerTest {
 
     @Autowired
     private TestRestTemplate restTemplate;
-    @Autowired
-    private UserService userService;
 
     @Test
     public void testLoginSuccess() {
