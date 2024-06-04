@@ -15,38 +15,10 @@ jobs:
     - name: Build with Maven
       run: mvn install
 
-  test_JotterController:
+  test:
     needs: build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: test JotterController
-        run: mvn -X -Dtest=com.gm.wj.controller.JotterControllerTest test
-  test_LibraryController:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: test LibraryController
-        run: mvn -Dtest=com.gm.wj.controller.LibraryControllerTest test
-  test_LoginController:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: test LoginController
-        run: mvn -Dtest=com.gm.wj.controller.LoginControllerTest test
-  test_RoleController:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: test RoleController
-        run: mvn -Dtest=com.gm.wj.controller.RoleControllerTest test
-  test_UserController:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: test UserController
-        run: mvn -Dtest=com.gm.wj.controller.UserControllerTest test
+      - name: test
+        run: mvn  test
