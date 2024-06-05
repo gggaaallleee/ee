@@ -40,7 +40,7 @@ jobs:
           done
       - name: Initialize test database
         run: |
-          mysql -h 127.0.0.1 -u aaa -paaa test < /src/main/resources/wj.sql
+          mysql -h 127.0.0.1 -u aaa -paaa test < src/main/resources/wj.sql
       - name: Build with Maven
         run: mvn install -DskipTests
 
