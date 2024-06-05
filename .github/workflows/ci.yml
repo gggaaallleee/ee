@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        redis-version: 5.0.14.1
+        redis-version: [6, 7]
     services:
       mariadb:
         image: mariadb:latest
