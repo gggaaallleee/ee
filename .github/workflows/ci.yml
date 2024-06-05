@@ -39,7 +39,7 @@ jobs:
           sleep 1
           done
       - name: Initialize test database
-        run: mysql -u aaa -p aaa test < src/main/resources/wj.sql
+        run: mysql --host 127.0.0.1 --port ${{ job.services.mysql.ports[3306] }} -u aaa -paaa test < src/main/resources/wj.sql
       - name: Build with Maven
         run: mvn install -DskipTests
 
