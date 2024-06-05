@@ -10,7 +10,7 @@ jobs:
         redis-version: [6]
     services:
       mysql:
-        image: mysql:5.7
+        image: mysql:8.0
         ports:
           - 3306
         env:
@@ -39,8 +39,7 @@ jobs:
           sleep 1
           done
       - name: Initialize test database
-        run: |
-          mysql -h 127.0.0.1 -u aaa -paaa test < src/main/resources/wj.sql
+        run: mysql -u aaa -p aaa test < src/main/resources/wj.sql
       - name: Build with Maven
         run: mvn install -DskipTests
 
