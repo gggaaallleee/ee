@@ -59,19 +59,24 @@ public class UserService {
         String email = user.getEmail();
         String password = user.getPassword();
 
-        username = HtmlUtils.htmlEscape(username);
-        user.setUsername(username);
-        name = HtmlUtils.htmlEscape(name);
-        user.setName(name);
-        phone = HtmlUtils.htmlEscape(phone);
-        user.setPhone(phone);
-        email = HtmlUtils.htmlEscape(email);
-        user.setEmail(email);
-        user.setEnabled(true);
-
         if (username.equals("") || password.equals("")) {
             return 0;//0表示用户名和密码不能为空
         }
+
+        username = HtmlUtils.htmlEscape(username);
+        user.setUsername(username);
+        if(!name.equals(""))
+            name = HtmlUtils.htmlEscape(name);
+        user.setName(name);
+        if (!phone.equals(""))
+            phone = HtmlUtils.htmlEscape(phone);
+        user.setPhone(phone);
+        if(!email.equals(""))
+            email = HtmlUtils.htmlEscape(email);
+        user.setEmail(email);
+
+        user.setEnabled(true);
+
 
         boolean exist = isExist(username);
 
