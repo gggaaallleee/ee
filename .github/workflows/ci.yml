@@ -35,13 +35,13 @@ jobs:
         env:
           PORT: ${{ job.services.mysql.ports[3306] }}
         run: |
-          while ! mysqladmin ping -h"127.0.0.1" -P"$PORT" --silent; do
+          while ! mysqladmin ping -h"127.0.0.1" -P"3306" --silent; do
           sleep 1
           done
       - name: Initialize test database
         run: |
-          mysql --host 127.0.0.1 --port ${{ job.services.mysql.ports[3306] }} -u aaa -paaa -e "CREATE DATABASE IF NOT EXISTS test;"
-          mysql --host 127.0.0.1 --port ${{ job.services.mysql.ports[3306] }} -u aaa -paaa test < src/main/resources/wj.sql
+          mysql --host 127.0.0.1 --port 3306 -u aaa -paaa -e "CREATE DATABASE IF NOT EXISTS test;"
+          mysql --host 127.0.0.1 --port 3306 -u aaa -paaa test < src/main/resources/wj.sql
       - name: Build with Maven
         run: mvn install -DskipTests
 
