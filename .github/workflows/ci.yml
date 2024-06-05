@@ -45,6 +45,8 @@ jobs:
       - name: Build with Maven
         run: mvn install -DskipTests
 
+      - name: test DashboardControllerTest
+        run: mvn -Dtest=com.gm.wj.controller.DashboardControllerTest test
       - name: test JotterController
         run: mvn -Dtest=com.gm.wj.controller.JotterControllerTest test
 
