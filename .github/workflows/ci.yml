@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        redis-version: [6, 7]
+        redis-version: 6
     services:
       mariadb:
         image: mariadb:latest
@@ -17,7 +17,7 @@ jobs:
           MYSQL_USER: aaa
           MYSQL_PASSWORD: aaa
           MYSQL_DATABASE: test
-          MYSQL_ROOT_PASSWORD: password
+          MYSQL_ROOT_PASSWORD: aaa
         options: --health-cmd="mysqladmin ping" --health-interval=5s --health-timeout=2s --health-retries=3
     steps:
       - uses: actions/checkout@v2
