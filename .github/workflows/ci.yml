@@ -41,7 +41,6 @@ jobs:
       - name: Initialize test database
         run: |
           mysql -h 127.0.0.1 -u aaa -paaa test < /path/to/wj.sql
-      - name:
       - name: Build with Maven
         run: mvn install -DskipTests
 
