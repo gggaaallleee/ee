@@ -65,15 +65,18 @@ public class UserService {
 
         username = HtmlUtils.htmlEscape(username);
         user.setUsername(username);
-        if(!name.equals(""))
+        if(!name.isEmpty()) {
             name = HtmlUtils.htmlEscape(name);
-        user.setName(name);
-        if (!phone.equals(""))
+            user.setName(name);
+        }
+        if (!phone.isEmpty()) {
             phone = HtmlUtils.htmlEscape(phone);
-        user.setPhone(phone);
-        if(!email.equals(""))
+            user.setPhone(phone);
+        }
+        if(!email.isEmpty()) {
             email = HtmlUtils.htmlEscape(email);
-        user.setEmail(email);
+            user.setEmail(email);
+        }
 
         user.setEnabled(true);
 
